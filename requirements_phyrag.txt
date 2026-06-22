@@ -1,0 +1,10 @@
+decord
+deepspeed
+faiss-cpu
+huggingface_hub
+pandas
+Pillow
+regex
+timm
+einops
+setuptools<81

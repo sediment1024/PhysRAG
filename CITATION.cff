@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use PhysRAG, please cite the paper and this software."
+title: "PhysRAG"
+type: software
+authors:
+  - family-names: "Cheng"
+    given-names: "Kexu"
+  - family-names: "Liu"
+    given-names: "Zicheng"
+  - family-names: "Gao"
+    given-names: "Mingju"
+  - family-names: "Song"
+    given-names: "Chunhe"
+  - family-names: "Tang"
+    given-names: "Hao"
+repository-code: "https://github.com/spoil1024/PhysRAG"
+url: "https://github.com/spoil1024/PhysRAG"
+version: "0.1.0"
+preferred-citation:
+  type: article
+  title: "PhysRAG: Enhancing Physics-Awareness in Video Generation via Retrieval-Augmented Generation"
+  authors:
+    - family-names: "Cheng"
+      given-names: "Kexu"
+    - family-names: "Liu"
+      given-names: "Zicheng"
+    - family-names: "Gao"
+      given-names: "Mingju"
+    - family-names: "Song"
+      given-names: "Chunhe"
+    - family-names: "Tang"
+      given-names: "Hao"
+  year: "2026"
