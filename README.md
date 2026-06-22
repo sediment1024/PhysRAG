@@ -6,12 +6,13 @@
 
 Kexu Cheng · Zicheng Liu · Mingju Gao · Chunhe Song · Hao Tang
 
-[![Code](https://img.shields.io/badge/GitHub-Code-181717?logo=github)](https://github.com/spoil1024/PhysRAG)
+[![Code](https://img.shields.io/badge/GitHub-Code-181717?logo=github)](https://github.com/sediment1024/PhysRAG)
 [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-PhysRAG-yellow)](https://huggingface.co/datasets/sediment1024/PhysRAG)
+[![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-PhysRAG-orange)](https://huggingface.co/sediment1024/PhysRAG)
 [![Base Model](https://img.shields.io/badge/Base-Wan2.2--TI2V--5B-blue)](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)
 [![License](https://img.shields.io/badge/Code%20License-Apache--2.0-green)](LICENSE)
 
-**[Paper: coming soon] · [Project Page](https://github.com/spoil1024/PhysRAG) · [Dataset](https://huggingface.co/datasets/sediment1024/PhysRAG) · [Model: coming soon]**
+**[Paper: coming soon] · [Project Page](https://github.com/sediment1024/PhysRAG) · [Dataset](https://huggingface.co/datasets/sediment1024/PhysRAG) · [Model](https://huggingface.co/sediment1024/PhysRAG)**
 
 </div>
 
@@ -45,18 +46,6 @@ text-to-video interface.
   DeepSpeed training, inference, and three evaluation wrappers.
 
 ## Method
-
-```mermaid
-flowchart LR
-    P[Text prompt] --> R[VideoCLIP-XL retrieval]
-    D[(170-video physical database)] --> R
-    R --> F[Cached VideoMAE-V2 features]
-    F --> Q[Learnable query adapter]
-    Q --> I[Physical token injection]
-    P --> W[Wan2.2 TI2V-5B]
-    I --> W
-    W --> V[Generated video]
-```
 
 The reference encoder is run offline. During training and inference, PhysRAG
 loads cached reference features, applies cross-attention with learnable queries,
@@ -122,10 +111,10 @@ are observed in Optics (**0.60** to **0.66**) and Material (**0.48** to
 
 | Component | Content | Location |
 |---|---|---|
-| Code | Training, RAG, inference, and evaluation | [GitHub](https://github.com/spoil1024/PhysRAG) |
+| Code | Training, RAG, inference, and evaluation | [GitHub](https://github.com/sediment1024/PhysRAG) |
 | Dataset | 6,869 videos, prompts, metadata, and 27 tar shards | [Hugging Face](https://huggingface.co/datasets/sediment1024/PhysRAG) |
 | RAG library | 170 references, cached features, and FAISS index | Included in the dataset repository |
-| Model | PhysRAG checkpoint for Wan2.2 TI2V-5B | Coming soon |
+| Model | PhysRAG checkpoint for Wan2.2 TI2V-5B | [Hugging Face](https://huggingface.co/sediment1024/PhysRAG) |
 | Base model | Wan2.2 TI2V-5B | [Wan-AI/Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) |
 
 The base Wan2.2, VideoMAE-V2, and VideoCLIP-XL checkpoints are not redistributed.
@@ -136,7 +125,7 @@ The release is tested on Linux with Python 3.10, PyTorch 2.5.1, CUDA 12.4,
 FlashAttention 2.8.3, and DeepSpeed 0.18.3.
 
 ```bash
-git clone https://github.com/spoil1024/PhysRAG.git
+git clone https://github.com/sediment1024/PhysRAG.git
 cd PhysRAG
 
 conda create -n physrag python=3.10 -y
@@ -172,10 +161,11 @@ python tools/extract_dataset_shards.py \
 # External retriever checkpoint
 huggingface-cli download alibaba-pai/VideoCLIP-XL VideoCLIP-XL.bin \
   --local-dir checkpoints/VideoCLIP-XL
-```
 
-Place the released PhysRAG `merged_model.pt` under `checkpoints/PhysRAG/` once
-the model repository is available.
+# PhysRAG checkpoint
+huggingface-cli download sediment1024/PhysRAG \
+  --repo-type model --local-dir checkpoints/PhysRAG
+```
 
 ## Inference
 
