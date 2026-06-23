@@ -19,18 +19,6 @@ Kexu Cheng · Zicheng Liu · Mingju Gao · Chunhe Song · Hao Tang
 <p align="center">
   <img src="assets/physrag_overview.png" width="96%" alt="PhysRAG architecture overview" />
 </p>
-<p align="center">
-  <b>PhysRAG retrieves real-world videos exhibiting related physical dynamics,
-  distills their cached VideoMAE-V2 features with learnable queries, and injects
-  the resulting priors into early video diffusion transformer blocks.</b>
-</p>
-
-PhysRAG equips a pretrained text-to-video diffusion transformer with physical
-priors retrieved from real-world videos. Given a text prompt, VideoCLIP-XL
-retrieves a physically relevant reference from a curated database. Offline
-VideoMAE-V2 features are distilled through learnable query tokens and injected
-into early Wan2.2 DiT blocks, guiding generation without changing the base
-text-to-video interface.
 
 ## Quick Start
 
