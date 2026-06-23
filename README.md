@@ -45,6 +45,23 @@ text-to-video interface.
 - **Reproducible release:** includes data curation, cache construction,
   DeepSpeed training, inference, and three evaluation wrappers.
 
+## Quick Start
+
+PhysRAG is easiest to reproduce in five steps:
+
+1. Install the Python/CUDA environment from [Installation](#installation).
+2. Download the four required assets: Wan2.2 base model, PhysRAG dataset,
+   PhysRAG checkpoint, and VideoCLIP-XL.
+3. Extract the dataset shards to a local `data/physrag/` directory.
+4. Run [Inference](#inference) directly with the released checkpoint, or build
+   Wan caches first if you want to reproduce [Training](#training).
+5. Use the wrappers in [Evaluation](#evaluation) only after the benchmark
+   repositories and evaluator weights are installed separately.
+
+If you just want to verify the public release, start with one-prompt inference.
+If you want to retrain the full method, follow the cache build plus two-GPU
+training path below.
+
 ## Method
 
 The reference encoder is run offline. During training and inference, PhysRAG
@@ -52,6 +69,21 @@ loads cached reference features, applies cross-attention with learnable queries,
 and injects the resulting tokens into the denoising transformer. See
 [`wan/modules/physical_adapter.py`](wan/modules/physical_adapter.py) and
 [`wan/modules/physical_injection.py`](wan/modules/physical_injection.py).
+
+## Reproduction Workflow
+
+1. **Prepare assets**: install dependencies, then download Wan2.2, the PhysRAG
+   dataset, the PhysRAG checkpoint, and VideoCLIP-XL.
+2. **Extract dataset shards**: unpack the Hugging Face dataset into
+   `data/physrag/` so `prompts_new.txt`, `videos_new.txt`, `videos/`, and
+   `rag/` are all locally available.
+3. **Build Wan caches**: precompute prompt embeddings and video latents for the
+   training set with `finetune/build_cache_wan.py`.
+4. **Train PhysRAG**: load cached Wan latents, retrieve physical references with
+   VideoCLIP-XL + FAISS, inject physical tokens into early DiT blocks, and save
+   `merged_model.pt` checkpoints.
+5. **Run inference or evaluation**: load the released `merged_model.pt`, repeat
+   retrieval at test time, and generate videos for prompts or benchmark suites.
 
 ## Demo
 
@@ -166,6 +198,27 @@ huggingface-cli download alibaba-pai/VideoCLIP-XL VideoCLIP-XL.bin \
 huggingface-cli download sediment1024/PhysRAG \
   --repo-type model --local-dir checkpoints/PhysRAG
 ```
+
+## Expected Data Layout
+
+After extraction, the working directory used by training and inference should
+look like this:
+
+```text
+data/physrag/
+├── prompts_new.txt
+├── videos_new.txt
+├── metadata.jsonl
+├── videos/<category>/<video_id>.mp4
+└── rag/
+    ├── metadata.jsonl
+    ├── features/<category>/<video_id>.pt
+    └── faiss_index/{config.json,metadata.json,video_features.index}
+```
+
+The released dataset already includes the RAG reference features and FAISS
+index. The Wan prompt/video caches are not distributed and must be built
+locally before training.
 
 ## Inference
 

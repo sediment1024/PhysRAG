@@ -37,5 +37,6 @@ The checkpoint loader intentionally ignores empty ZeRO-3 partition tensors and
 shape-mismatched base-model tensors. Use the provided loader rather than strict
 `load_state_dict`.
 
-The PhysRAG checkpoint download command will be added after the model repository
-is announced.
+Download the released checkpoint from
+`https://huggingface.co/sediment1024/PhysRAG`, then point `PHYSICAL_CKPT` to
+`merged_model.pt`.
