@@ -9,7 +9,7 @@
 - Two GPUs for the released training configuration
 
 ```bash
-git clone https://github.com/spoil1024/PhysRAG.git
+git clone https://github.com/sediment1024/PhysRAG.git
 cd PhysRAG
 python -m venv .venv
 source .venv/bin/activate

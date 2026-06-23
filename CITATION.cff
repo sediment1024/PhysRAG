@@ -13,8 +13,8 @@ authors:
     given-names: "Chunhe"
   - family-names: "Tang"
     given-names: "Hao"
-repository-code: "https://github.com/spoil1024/PhysRAG"
-url: "https://github.com/spoil1024/PhysRAG"
+repository-code: "https://github.com/sediment1024/PhysRAG"
+url: "https://github.com/sediment1024/PhysRAG"
 version: "0.1.0"
 preferred-citation:
   type: article
