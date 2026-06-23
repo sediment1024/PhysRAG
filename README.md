@@ -1,6 +1,6 @@
 <div align="center">
 
-# PhysRAG
+# [ECCV 2026] PhysRAG
 
 ### Enhancing Physics-Awareness in Video Generation via Retrieval-Augmented Generation
 
@@ -32,18 +32,12 @@ VideoMAE-V2 features are distilled through learnable query tokens and injected
 into early Wan2.2 DiT blocks, guiding generation without changing the base
 text-to-video interface.
 
-## Highlights
+## Status
 
-- **Retrieval-augmented video generation:** retrieves physical evidence for each
-  prompt instead of relying only on parametric knowledge.
-- **Curated physical database:** 170 references covering 17 physical phenomena,
-  selected from a 6,869-video training set.
-- **Compact prior extraction:** 128 learnable queries attend to cached
-  VideoMAE-V2 features as an information bottleneck.
-- **Lightweight DiT integration:** physical tokens are injected at blocks
-  `0, 1, 2` through gated residual fusion.
-- **Reproducible release:** includes data curation, cache construction,
-  DeepSpeed training, inference, and three evaluation wrappers.
+- Code: released
+- Dataset: released at `sediment1024/PhysRAG`
+- Model: released at `sediment1024/PhysRAG`
+- Paper page: coming soon
 
 ## Quick Start
 
@@ -84,72 +78,6 @@ and injects the resulting tokens into the denoising transformer. See
    `merged_model.pt` checkpoints.
 5. **Run inference or evaluation**: load the released `merged_model.pt`, repeat
    retrieval at test time, and generate videos for prompts or benchmark suites.
-
-## Demo
-
-The synchronized previews below show the first two seconds of each result in a
-consistent left-to-right order: **PhyT2V | Wan2.2 | PhysRAG (Ours)**. All samples
-use 49 frames at 704×480. The previews are compressed; the original MP4 package
-is kept outside Git history for release separately.
-
-<details open>
-<summary><b>Elastic impact — basketball hitting the ground</b></summary>
-
-> **Prompt:** A vibrant, elastic basketball is thrown forcefully towards the
-> ground, capturing its dynamic interaction with the surface upon impact.
-
-<p align="center">
-  <img src="assets/demos/0026_comparison.webp" width="100%" alt="Basketball impact comparison: PhyT2V, Wan2.2, and PhysRAG (Ours)" />
-</p>
-</details>
-
-<details open>
-<summary><b>Liquid interaction — rinsing a dirty mop</b></summary>
-
-> **Prompt:** A dirty mop is rinsed in a sink filled with soapy water, the dirt
-> visibly washing away.
-
-<p align="center">
-  <img src="assets/demos/0351_comparison.webp" width="100%" alt="Mop rinsing comparison: PhyT2V, Wan2.2, and PhysRAG (Ours)" />
-</p>
-</details>
-
-<details open>
-<summary><b>Granular material flow — pouring salt</b></summary>
-
-> **Prompt:** Salt is poured from a shaker onto a plate of food, creating a
-> visible layer of white granules.
-
-<p align="center">
-  <img src="assets/demos/0390_comparison.webp" width="100%" alt="Salt pouring comparison: PhyT2V, Wan2.2, and PhysRAG (Ours)" />
-</p>
-</details>
-
-## Quantitative Results
-
-On PhyGenBench, PhysRAG improves Wan2.2 across all four physical dimensions,
-raising the average score from **0.54** to **0.58**. The largest improvements
-are observed in Optics (**0.60** to **0.66**) and Material (**0.48** to
-**0.53**).
-
-<p align="center">
-  <img src="assets/quantitative.png" width="96%" alt="Quantitative comparison of PhysRAG and existing video generation methods on PhyGenBench" />
-</p>
-<p align="center">
-  <sub>Quantitative comparison on PhyGenBench. Higher is better.</sub>
-</p>
-
-## Release Assets
-
-| Component | Content | Location |
-|---|---|---|
-| Code | Training, RAG, inference, and evaluation | [GitHub](https://github.com/sediment1024/PhysRAG) |
-| Dataset | 6,869 videos, prompts, metadata, and 27 tar shards | [Hugging Face](https://huggingface.co/datasets/sediment1024/PhysRAG) |
-| RAG library | 170 references, cached features, and FAISS index | Included in the dataset repository |
-| Model | PhysRAG checkpoint for Wan2.2 TI2V-5B | [Hugging Face](https://huggingface.co/sediment1024/PhysRAG) |
-| Base model | Wan2.2 TI2V-5B | [Wan-AI/Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) |
-
-The base Wan2.2, VideoMAE-V2, and VideoCLIP-XL checkpoints are not redistributed.
 
 ## Installation
 
@@ -286,19 +214,6 @@ Wrappers are provided for:
 
 Benchmark assets and evaluator checkpoints must be obtained from their original
 repositories. See [`docs/EVALUATION.md`](docs/EVALUATION.md).
-
-## Repository Structure
-
-```text
-PhysRAG/
-├── finetune/                 # cache, training, and inference
-├── wan/modules/              # physical adapter and DiT injection
-├── PhysicalDB/               # VideoMAE and VideoCLIP-XL/FAISS utilities
-├── tools/data_curation/      # WISA-80K filtering pipeline
-├── evaluation/               # benchmark wrappers
-├── docs/                     # detailed documentation
-└── requirements*.txt
-```
 
 ## License and Attribution
 
