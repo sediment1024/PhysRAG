@@ -32,13 +32,6 @@ VideoMAE-V2 features are distilled through learnable query tokens and injected
 into early Wan2.2 DiT blocks, guiding generation without changing the base
 text-to-video interface.
 
-## Status
-
-- Code: released
-- Dataset: released at `sediment1024/PhysRAG`
-- Model: released at `sediment1024/PhysRAG`
-- Paper page: coming soon
-
 ## Quick Start
 
 PhysRAG is easiest to reproduce in five steps:
