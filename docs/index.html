@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PhysRAG | ECCV 2026</title>
+    <meta
+      name="description"
+      content="PhysRAG enhances physics-awareness in video generation with retrieval-augmented physical priors for Wan2.2."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#top">PhysRAG</a>
+        <nav class="nav-links">
+          <a href="#abstract">Abstract</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container narrow">
+          <h1>
+            PhysRAG: Enhancing Physics-Awareness in Video Generation via
+            Retrieval-Augmented Generation
+          </h1>
+          <p class="venue">Accepted to ECCV 2026</p>
+
+          <p class="authors">
+            Kexu Cheng<sup>1,2,*</sup> · Zicheng Liu<sup>1,*</sup> ·
+            Mingju Gao<sup>1,*</sup> · Chunhe Song<sup>2,†</sup> ·
+            Hao Tang<sup>1,†</sup>
+          </p>
+          <p class="affiliations">
+            <sup>1</sup> Peking University ·
+            <sup>2</sup> IAII, Chinese Academy of Sciences
+          </p>
+
+          <p class="note">* Equal contribution · † Corresponding authors</p>
+
+          <div class="hero-actions">
+            <a class="action" href="https://github.com/sediment1024/PhysRAG">Code</a>
+            <a class="action" href="https://huggingface.co/datasets/sediment1024/PhysRAG">Dataset</a>
+            <a class="action" href="https://huggingface.co/sediment1024/PhysRAG">Model</a>
+            <span class="action muted">Paper Coming Soon</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="abstract">
+        <div class="container narrow">
+          <div class="logo-strip" aria-label="Affiliations">
+            <div class="logo-card pku">
+              <img src="assets/pku-seeklogo-cropped.png" alt="Peking University logo" />
+            </div>
+            <div class="logo-card iaii">
+              <img src="assets/iaii.png" alt="Institute of AI for Industries, Chinese Academy of Sciences logo" />
+            </div>
+          </div>
+
+          <div class="section-head">
+            <h2>Abstract</h2>
+          </div>
+          <p class="body-text">
+            Developing physically aware video generation models remains a
+            significant challenge due to the difficulty in capturing diverse
+            physical phenomena, such as thermal dynamics, mechanics, and
+            optics. In this work, we introduce PhysRAG, a novel pipeline that
+            enhances physical awareness in video generation through
+            Retrieval-Augmented Generation (RAG). To address the issue of
+            limited high-quality data, we design a two-stage data filtering
+            pipeline based on the WISA-80K dataset, resulting in a curated set
+            of 7K high-quality videos for training. Furthermore, we construct a
+            physical video database and develop a mechanism to inject physical
+            knowledge into a video diffusion model using learnable queries. Our
+            method achieves state-of-the-art performance in both visual quality
+            and physical rule compliance, surpassing existing models in
+            benchmarks such as PhyGenBench and VBench. We conduct extensive
+            ablation studies to validate the effectiveness of our key
+            components, including the data filtering pipeline, RAG mechanism,
+            and method for physical information extraction.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="method">
+        <div class="container narrow">
+          <div class="section-head">
+            <h2>Method</h2>
+          </div>
+
+          <figure class="content-figure method-figure">
+            <img src="assets/physrag_overview.png" alt="PhysRAG method overview figure" />
+            <figcaption>
+              Overview of the retrieval, query distillation, and physical-prior
+              injection pipeline.
+            </figcaption>
+          </figure>
+
+          <p class="body-text">
+            PhysRAG first retrieves a physics-relevant reference from a curated
+            video library with VideoCLIP-XL and FAISS. Offline VideoMAE-V2
+            features are then distilled into compact physical-prior tokens by
+            128 learnable queries. These priors are injected into early Wan2.2
+            diffusion transformer blocks, improving physical consistency without
+            changing the original text-to-video interface.
+          </p>
+
+          <div class="step-row">
+            <article class="step-card">
+              <span class="step-no">01</span>
+              <h3>Retrieve</h3>
+              <p>Retrieve the most relevant physical reference.</p>
+            </article>
+            <article class="step-card">
+              <span class="step-no">02</span>
+              <h3>Distill</h3>
+              <p>Distill VideoMAE-V2 features into compact priors.</p>
+            </article>
+            <article class="step-card">
+              <span class="step-no">03</span>
+              <h3>Inject</h3>
+              <p>Fuse the priors into early Wan2.2 DiT blocks.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="results">
+        <div class="container narrow">
+          <div class="section-head">
+            <h2>Results</h2>
+          </div>
+
+          <h3 class="subhead">Quantitative Results</h3>
+          <figure class="content-figure">
+            <img src="assets/quantitative.png" alt="Quantitative results on PhyGenBench" />
+            <figcaption>
+              On PhyGenBench, PhysRAG improves Wan 2.2 from 0.54 to 0.58 average
+              score, with gains across mechanics, optics, thermal, and material
+              behavior.
+            </figcaption>
+          </figure>
+
+          <figure class="content-figure compact-gap">
+            <img src="assets/table2.png" alt="Quantitative table on low-level and high-level metrics" />
+            <figcaption>
+              PhysRAG also improves Wan 2.2 on low-level and high-level metrics,
+              especially color, low-level average, subject consistency, and
+              multi-object consistency.
+            </figcaption>
+          </figure>
+
+          <h3 class="subhead">Qualitative Examples</h3>
+          <p class="body-text center-text">
+            Below are representative comparisons. From left to right: PhyT2V,
+            Wan2.2, and PhysRAG.
+          </p>
+
+          <div class="demo-list">
+            <figure class="demo-item">
+              <img src="assets/demos/0026_comparison.webp" alt="Elastic impact comparison" />
+              <figcaption>Elastic impact with more coherent motion and contact dynamics.</figcaption>
+            </figure>
+            <figure class="demo-item">
+              <img src="assets/demos/0351_comparison.webp" alt="Liquid interaction comparison" />
+              <figcaption>Liquid interaction with more stable flow and splash behavior.</figcaption>
+            </figure>
+            <figure class="demo-item">
+              <img src="assets/demos/0390_comparison.webp" alt="Granular flow comparison" />
+              <figcaption>Granular flow with more plausible dispersion and accumulation.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="citation">
+        <div class="container narrow">
+          <div class="section-head">
+            <h2>Citation</h2>
+          </div>
+          <p class="body-text center-text citation-note">
+            If you find our work useful in your research, please consider citing.
+          </p>
+          <pre><code>@article{cheng2026physrag,
+  title   = {PhysRAG: Enhancing Physics-Awareness in Video Generation via Retrieval-Augmented Generation},
+  author  = {Cheng, Kexu and Liu, Zicheng and Gao, Mingju and Song, Chunhe and Tang, Hao},
+  year    = {2026},
+  note    = {ECCV 2026}
+}</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container narrow">
+        <p>Project page draft built from the current PhysRAG paper, code, and released assets.</p>
+      </div>
+    </footer>
+  </body>
+</html>
