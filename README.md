@@ -4,7 +4,7 @@
 
 ### Enhancing Physics-Awareness in Video Generation via Retrieval-Augmented Generation
 
-Kexu Cheng · Zicheng Liu · Mingju Gao · Chunhe Song · Hao Tang
+[Kexu Cheng](https://sediment1024.github.io)† · [Zicheng Liu](https://github.com/Innovationlzc)† · [Mingju Gao](https://gasaiyu.github.io/)† · [Chunhe Song](https://iaii.cas.cn/rcdw/yjy/202505/t20250522_7790187.html)✉ · [Hao Tang](https://ha0tang.github.io)✉
 
 [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-PhysRAG-yellow)](https://huggingface.co/datasets/sediment1024/PhysRAG)
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-PhysRAG-orange)](https://huggingface.co/sediment1024/PhysRAG)
