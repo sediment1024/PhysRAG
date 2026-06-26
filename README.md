@@ -6,7 +6,6 @@
 
 Kexu Cheng · Zicheng Liu · Mingju Gao · Chunhe Song · Hao Tang
 
-[![Code](https://img.shields.io/badge/GitHub-Code-181717?logo=github)](https://github.com/sediment1024/PhysRAG)
 [![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-PhysRAG-yellow)](https://huggingface.co/datasets/sediment1024/PhysRAG)
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-PhysRAG-orange)](https://huggingface.co/sediment1024/PhysRAG)
 [![Base Model](https://img.shields.io/badge/Base-Wan2.2--TI2V--5B-blue)](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)
