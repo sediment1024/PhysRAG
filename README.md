@@ -217,11 +217,14 @@ PhyGenBench, VideoPhy2, VBench, and WISA-80K for their public resources.
 ## Citation
 
 ```bibtex
-@article{cheng2026physrag,
+@misc{cheng2026physragenhancingphysicsawarenessvideo,
   title={PhysRAG: Enhancing Physics-Awareness in Video Generation via Retrieval-Augmented Generation},
-  author={Cheng, Kexu and Liu, Zicheng and Gao, Mingju and Song, Chunhe and Tang, Hao},
+  author={Kexu Cheng and Zicheng Liu and Mingju Gao and Chunhe Song and Hao Tang},
   year={2026},
-  note={Manuscript}
+  eprint={2606.26916},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2606.26916}
 }
 ```
 
