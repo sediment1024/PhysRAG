@@ -11,7 +11,7 @@
 [![Base Model](https://img.shields.io/badge/Base-Wan2.2--TI2V--5B-blue)](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)
 [![License](https://img.shields.io/badge/Code%20License-Apache--2.0-green)](LICENSE)
 
-**[Paper](https://arxiv.org/abs/2606.26916) · [Project Page](https://github.com/sediment1024/PhysRAG) · [Dataset](https://huggingface.co/datasets/sediment1024/PhysRAG) · [Model](https://huggingface.co/sediment1024/PhysRAG)**
+**[Paper](https://arxiv.org/abs/2606.26916) · [Project Page](https://sediment1024.github.io/PhysRAG) · [Dataset](https://huggingface.co/datasets/sediment1024/PhysRAG) · [Model](https://huggingface.co/sediment1024/PhysRAG)**
 
 </div>
 
